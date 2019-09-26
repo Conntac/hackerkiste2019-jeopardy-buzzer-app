@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>images/background-tiles.png</file>
+        <file>images/background-tiles@2x.png</file>
+        <file>images/background-tiles@3x.png</file>
+        <file>GameLabel.qml</file>
+        <file>NamePage.qml</file>
+        <file>BuzzerPage.qml</file>
+        <file>images/conntac-logo.png</file>
+        <file>images/conntac-logo@2x.png</file>
+        <file>images/conntac-logo@3x.png</file>
+        <file>Buzzer.qml</file>
+        <file>EllipseShape.qml</file>
+    </qresource>
+</RCC>
