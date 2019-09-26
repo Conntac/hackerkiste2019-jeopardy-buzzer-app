@@ -7,6 +7,8 @@ Item {
 
     signal startGame(string name)
 
+    property alias startButton: startButton
+
     ColumnLayout {
         id: colLayout
         anchors.left: parent.left
@@ -41,6 +43,7 @@ Item {
         }
 
         Button {
+            id: startButton
             Layout.fillWidth: true
             text: "Am Spiel teilnehmen"
             onClicked: root.startGame(nameInput.text)

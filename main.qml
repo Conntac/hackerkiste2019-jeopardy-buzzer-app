@@ -1,6 +1,7 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.12
+import net.conntac.jeopardy 1.0
 
 ApplicationWindow {
     id: window
@@ -57,18 +58,33 @@ ApplicationWindow {
             }
         }
 
-        StackView {
-            id: stackView
-            initialItem: NamePage {
-                onStartGame: {
+        BuzzerEngine {
+            id: buzzerEngine
+
+            onStateChanged: {
+                switch(state) {
+                case BuzzerEngine.Unavailable:
+                    break;
+                case BuzzerEngine.Registered:
                     var properties = {
-                        "name": name
-                    };
+                        "name": buzzerEngine.name
+                    }
 
                     stackView.replace(Qt.resolvedUrl("BuzzerPage.qml"), properties);
+                    break;
                 }
             }
+        }
+
+        StackView {
+            id: stackView
             anchors.fill: parent
+            initialItem: NamePage {
+                onStartGame: {
+                    buzzerEngine.name = name;
+                    buzzerEngine.connect(Qt.resolvedUrl("ws://localhost:31337/jeopardy"))
+                }
+            }
         }
     }
 }

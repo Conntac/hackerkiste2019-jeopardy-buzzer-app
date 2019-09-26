@@ -8,9 +8,11 @@ Item {
     property string name: "Dein Name"
 
     function buzz() {
+        buzzerEngine.buzz();
+
         buzzer.down = true;
 
-        state = "first";
+        state = "too_slow";
     }
 
     ColumnLayout {
