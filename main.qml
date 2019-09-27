@@ -63,14 +63,16 @@ ApplicationWindow {
 
             onStateChanged: {
                 switch(state) {
+                case BuzzerEngine.Disconnected:
                 case BuzzerEngine.Unavailable:
+                    stackView.pop()
                     break;
                 case BuzzerEngine.Registered:
                     var properties = {
                         "name": buzzerEngine.name
                     }
 
-                    stackView.replace(Qt.resolvedUrl("BuzzerPage.qml"), properties);
+                    stackView.push(Qt.resolvedUrl("BuzzerPage.qml"), properties);
                     break;
                 }
             }
@@ -80,6 +82,7 @@ ApplicationWindow {
             id: stackView
             anchors.fill: parent
             initialItem: NamePage {
+                startButton.enabled: buzzerEngine.state == BuzzerEngine.Unavailable || buzzerEngine.state == BuzzerEngine.Disconnected
                 onStartGame: {
                     buzzerEngine.name = name;
                     buzzerEngine.connect(Qt.resolvedUrl("ws://localhost:31337/jeopardy"))

@@ -9,10 +9,6 @@ Item {
 
     function buzz() {
         buzzerEngine.buzz();
-
-        buzzer.down = true;
-
-        state = "too_slow";
     }
 
     ColumnLayout {
@@ -50,6 +46,9 @@ Item {
 
         height: width / 1.0727969349
         onClicked: root.buzz()
+
+        // Show down state while pressed
+        down: pressed
     }
 
     states: [
